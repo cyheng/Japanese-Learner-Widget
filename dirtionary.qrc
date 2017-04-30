@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/dir">
+        <file alias="hi_txt">dir/hi_dir.txt</file>
+        <file alias="ka_txt">dir/ka_dir.txt</file>
+    </qresource>
+</RCC>
