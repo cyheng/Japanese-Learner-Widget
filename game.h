@@ -9,6 +9,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QTimeLine>
+#include <QProgressBar>
 class Setting;
 class Game : public QMainWindow
 {
@@ -18,8 +19,17 @@ public:
     void ReadData(const QString &name);
     void SetUpData();
     void LoadSetting(Setting *s);
-    void GameOver();
-    void GameControl();
+    void GameControl(QWidget *parent);
+    void setLayout();
+    void setGUIProperty();
+    void InitGUIWidgets();
+    void showQuestion();
+    void showAnswers(int id);
+    void showAnswers();
+signals:
+    void yinbiaoSizeChange(int);
+public slots:
+    void GameOver(int size);
 private:
     enum {HI_DIR,KA_DIR};
     QVector<QPair<QString,QString>> yinbiao;
@@ -32,7 +42,18 @@ private:
     QLCDNumber *cNum;
     QLCDNumber *eNum;
     QPushButton *next;
+    QProgressBar *progressBar;
+    QTimeLine *timeLine;
+    QLabel *questionNum;
+    QLabel *correctNum;
+    QLabel *errorNum;
+    QPushButton *returnToMain;
     Setting *pSetting;
+    QButtonGroup *group;
+    int trueButtonId;
+    int trueAns;
+    int correct=0;
+    int error=0;
 };
 
 #endif // GAME_H

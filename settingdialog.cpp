@@ -30,7 +30,7 @@ Setting::Setting(QWidget *parent)
 
     QLabel *timeSetText = new QLabel(u8"每道问题的倒计时秒数",this);
     QSpinBox *timeSet = new QSpinBox(this);
-    timeSet->setRange(0, 10);  // 范围
+    timeSet->setRange(1, 10);  // 范围
     timeSet->setSingleStep(1);  // 步长
     timeSet->setSuffix("s");  // 前缀
     timeSet->setValue(4);  // 当前值
@@ -42,6 +42,9 @@ Setting::Setting(QWidget *parent)
     mainLayout->addLayout(radioLayout);
     mainLayout->addLayout(timeLayout);
 
+
+
+
     connect(timeSet,static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged),
             this,[=](int value)
     {
@@ -50,6 +53,7 @@ Setting::Setting(QWidget *parent)
     connect(buttonGroup,static_cast<void(QButtonGroup::*)(int)>(&QButtonGroup::buttonClicked),this,
             [=](int id){
         defaultFront =id;
+        qDebug()<<id;
     });
 }
 
